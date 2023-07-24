@@ -2,25 +2,22 @@
 \alias{SpatialReference}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-	
+	Training spatial reference for domain annotation.
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+	Training spatial reference for domain annotation.
 }
 \usage{
-SpatialReference(cellType_distri, sample_information_region)
+	SpatialReference(cellType_distri, sample_information_region)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{cellType_distri}{
-%%     ~~Describe \code{cellType_distri} here~~
+	A data frame. The spatial adjacent cell type distribution of reference.
 }
   \item{sample_information_region}{
-%%     ~~Describe \code{sample_information_region} here~~
+	A vector showing manually annatated regions.
 }
-}
-\details{
-%%  ~~ If necessary, more details than the description above ~~
 }
 \value{
 %%  ~Describe the value returned
@@ -29,7 +26,6 @@ SpatialReference(cellType_distri, sample_information_region)
 %%  \item{term_feature}{The avarage of spatially adjacent cell type distribution for each domain.}
 %%  \item{cellType}{Character. Cell type names in spatially adjacent cell type distribution of spatial reference.}
 
-%% ...
 }
 
 \author{
