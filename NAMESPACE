@@ -1,4 +1,4 @@
-export("correlation", "DistributionDistance", "DomainCharacterization",
+export("Correlation", "DistributionDistance", "DomainCharacterization",
        "DomainDistribution", "DomainHclust", "DomainPlot",
        "DomainPlot_multiple", "DrawCluster", "InitialClustering",
        "SpatialCellTypeDistribution",
