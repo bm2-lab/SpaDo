@@ -1,4 +1,5 @@
-# SpaAlign
+# SpaDo
+## Cross-slice Spatial Transcriptomics Domain Analysis.
 
 ## **Workflow of SpaAlign** 
 ![](Overview.png)<!-- -->
