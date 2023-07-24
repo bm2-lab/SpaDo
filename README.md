@@ -1,4 +1,5 @@
-# SpaAlign
+# SpaDo
+Cross-slice Spatial Transcriptomics Domain Analysis.
 
 ## **Workflow of SpaAlign** 
 ![](Overview.png)<!-- -->
@@ -16,7 +17,12 @@ See [Documentation and Tutorials](https://spatialalign.readthedocs.io/en/latest/
 Seurat v3
 
 ## Installation
+* **SpaDo** package can be installed from Github using **devtools** packages with **R>=4.0.5**.
 
+    ```r
+    library(devtools)
+    install_github("bm2-lab/SpaDo")
+    ```
 
 ## Citation
 
