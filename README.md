@@ -17,7 +17,8 @@ See [Documentation and Tutorials](https://spatialalign.readthedocs.io/en/latest/
 Seurat v3
 
 ## Installation
-
+require(devtools)
+install_github("bm2-lab/SpaDo")
 
 ## Citation
 
