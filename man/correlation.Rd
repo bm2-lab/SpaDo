@@ -25,7 +25,7 @@ Correlation(matrix, matrix2 = NULL, method = c("pearson", "spearman", "cosine", 
     Logical. Default is FALSE. If TRUE, run this function in parallel.
 }
   \item{cpu_num}{
-    Numeric. Default is 8. It works only when 'parallel_run' is TRUE.
+    Numeric. Default is 4. It works only when 'parallel_run' is TRUE.
 }
 }
 \value{
