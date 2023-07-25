@@ -19,5 +19,5 @@ In this study, we introduce SpaDo, a tool that facilitates cross-slice spatial d
 See [Tutorials](https://www.jianguoyun.com/p/DW15NecQnMvoCxji45QFIAA) and [Demo datasets](https://www.jianguoyun.com/p/DX1ssBYQnMvoCxjZ45QFIAA)
 
 ## Citation
-Bin Duan, Shaoqi Chen, Xiaojie Chen, Qi Liu. Cross-slice Spatial Transcriptomics Domain analysis with SpaDo.
+Bin Duan, Shaoqi Chen, Xiaojie Cheng, Qi Liu. Cross-slice Spatial Transcriptomics Domain analysis with SpaDo.
 
