@@ -1,20 +1,12 @@
 # SpaDo
-Cross-slice Spatial Transcriptomics Domain Analysis.
+Cross-slice **Spa**tial Transcriptomics **Do**main Analysis.
 
 ## **Workflow of SpaAlign** 
 ![](Overview.png)<!-- -->
 
 
 ## Overview
-SpatialAlign is designed for multi-slice spatial domain analysis of both single-cell and spot-resolution spatial transcriptomics.
-
-From the view of biological function, SpaAlign uses a simple but effective strategy, spatially adjacent cell type distribution, to integrate gene expression and spatial information, that enables multi-slice spatial domain analysis from three aspects, namely consistent spatial domain detection, reference-based spatial domain annotation, and slice-level clustering and trajectory analysis with spatial domain composition.
-
-## Getting started
-See [Documentation and Tutorials](https://spatialalign.readthedocs.io/en/latest/index.html).
-
-## Software dependencies
-Seurat v3
+In this study, we introduce SpaDo, a tool that facilitates cross-slice spatial domain alignment, detection, annotation, and downstream analysis for spatial transcriptome data at single-cell and spot resolutions. SpaDo encompasses the following functionalities: (1) spatial domain alignment and detection of multi-slice spatial domain, (2) reference-based spatial domain annotation, and (3) calculation of slice-level similarity and cross-slice clustering analysis.
 
 ## Installation
 * **SpaDo** package can be installed from Github using **devtools** packages with **R>=4.0.5**.
@@ -23,7 +15,10 @@ Seurat v3
     library(devtools)
     install_github("bm2-lab/SpaDo")
     ```
+    
+## Getting started
+See [Tutorials](https://www.jianguoyun.com/p/DW15NecQnMvoCxji45QFIAA) and [Demo datasets](https://www.jianguoyun.com/p/DX1ssBYQnMvoCxjZ45QFIAA)
 
 ## Citation
-
+Bin Duan, Shaoqi Chen, Xiaojie Chen, Qi Liu. Cross-slice Spatial Transcriptomics Domain analysis with SpaDo.
 
