@@ -1,7 +1,7 @@
 # SpaDo
 Cross-slice **Spa**tial Transcriptomics **Do**main Analysis.
 
-![](Overview.png)<!-- -->
+![](Workflow.png)<!-- -->
 
 
 ## Overview
