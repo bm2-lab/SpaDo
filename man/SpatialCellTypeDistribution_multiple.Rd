@@ -8,7 +8,7 @@
     The calculation of spatially proximate cell type distributions for multiple slices.
 }
 \usage{
-SpatialCellTypeDistribution_multiple(sample_information_coordinate_list, sequence_resolution = c("single_cell", "spot"), sample_information_cellType_list = NULL, sample_information_decon_list = NULL)
+SpatialCellTypeDistribution_multiple(sample_information_coordinate_list, sequence_resolution = c("single_cell", "spot"), sample_information_cellType_list = NULL, sample_information_decon_list = NULL,r=2,k=30)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -24,14 +24,17 @@ SpatialCellTypeDistribution_multiple(sample_information_coordinate_list, sequenc
   \item{sample_information_decon_list}{
     A list of data frames, each of which shows deconvolution result of spots. The column is cell type name. The row is spot name.
 }
+  \item{r}{
+  	Numeric. The value of radius. Default is 2. 
+}
+  \item{k}{
+    Numeric. The number of neighbors. Default is 30.
+}
 }
 
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{cell_type_distribution_combine }{A data frame showing spatially proximate cell type distributions for multiple slices. The column is cell type names. The row is cell/spot names.}
-%%  \item{datasets_lable }{A vector showing slice lables of each cell/spot name corresponding to rownames of 'cell_type_distribution_combine'.}
-%% ...
+	\item{cell_type_distribution_combine }{A data frame showing spatially proximate cell type distributions for multiple slices. The column is cell type names. The row is cell/spot names.}
+	\item{datasets_lable }{A vector showing slice lables of each cell/spot name corresponding to rownames of 'cell_type_distribution_combine'.}
 }
 
 \author{

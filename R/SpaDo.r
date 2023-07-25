@@ -535,7 +535,7 @@ DomainCharacterization<-function (domain_hclust, cell_type_distribution, k = nco
 
 
 SpatialCellTypeDistribution_multiple<-function (sample_information_coordinate_list, sequence_resolution = c("single_cell", 
-    "spot"), sample_information_cellType_list = NULL, sample_information_decon_list = NULL) 
+    "spot"), sample_information_cellType_list = NULL, sample_information_decon_list = NULL,r=2,k=30) 
 {
     sequence_resolution <- sequence_resolution[1]
     cell_type_distribution_list <- list()
@@ -546,7 +546,7 @@ SpatialCellTypeDistribution_multiple<-function (sample_information_coordinate_li
         else {
             for (i in 1:length(sample_information_coordinate_list)) {
                 cell_type_distribution_list[[i]] <- SpatialCellTypeDistribution(sample_information_coordinate = sample_information_coordinate_list[[i]], 
-                  sequence_resolution = "single_cell", sample_information_cellType = sample_information_cellType_list[[i]])
+                  sequence_resolution = "single_cell", sample_information_cellType = sample_information_cellType_list[[i]],k=k)
             }
         }
     }
@@ -557,7 +557,7 @@ SpatialCellTypeDistribution_multiple<-function (sample_information_coordinate_li
         else {
             for (i in 1:length(sample_information_coordinate_list)) {
                 cell_type_distribution_list[[i]] <- SpatialCellTypeDistribution(sample_information_coordinate = sample_information_coordinate_list[[i]], 
-                  sequence_resolution = "spot", sample_information_decon = sample_information_decon_list[[i]])
+                  sequence_resolution = "spot", sample_information_decon = sample_information_decon_list[[i]],r=r)
             }
         }
     }
