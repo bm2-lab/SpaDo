@@ -1,7 +1,7 @@
 # SpaDo
 Cross-slice **Spa**tial Transcriptome **Do**main Analysis.
 
-![](Workflow.png)<!-- -->
+![](Overview.png)<!-- -->
 **Fig 1. Workflow of SpaDo.** **a.** Calculating the spatially adjacent cell type embedding for both single-cell resolution and spot resolution spatial transcriptomic data. SPACE, SPatially Adjacent Cell type Embedding. **b.** Three functions involved in multi-slice spatial domain analysis: multi-slice domain detection, reference-based spatial domain annotation, and slice-level clustering analysis with consideration of spatial domain composition. JSD, Jensen Shannon Divergence.
 
 ## Overview
