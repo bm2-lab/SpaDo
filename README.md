@@ -8,7 +8,7 @@ With the rapid advancements in spatial transcriptome sequencing, multiple tissue
 
 ## Installation
 * **SpaDo** package can be installed from Github using **devtools** packages with **R>=4.0.5**.
-## **Attention：** SpaDo was originally built on **Seurat 4.0.4** and **SeuratObject 4.0.4**. To avoid problems due to Seurat updates, please make sure you are using the same version （**Seurat 4.0.4** and **SeuratObject 4.0.4**）!
+* **Attention：** SpaDo was originally built on **Seurat 4.0.4** and **SeuratObject 4.0.4**. To avoid problems due to Seurat updates, please make sure you are using the same version of Seurat and SeuratObject packages （**Seurat 4.0.4** and **SeuratObject 4.0.4**）!
 
     ```r
     library(devtools)
