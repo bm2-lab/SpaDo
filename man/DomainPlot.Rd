@@ -16,7 +16,7 @@ DomainPlot(domain_hclust, distribution_distance, sample_information_coordinate =
     A list. The output of function 'DomainHclust()'.
 }
   \item{distribution_distance}{
-    A matrix. The output of function 'DistributionDistance()'.
+    A matrix. The output of function 'DistributionDistance()' or the output of function "SpatialCellTypeDistribution()".
 }
   \item{sample_information_coordinate}{
     The spatial coordinates of each cell/spot. A data frame with columns are 'X' and 'Y' coordinates, rows are cell's names.
