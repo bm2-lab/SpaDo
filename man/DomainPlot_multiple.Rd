@@ -16,7 +16,7 @@ DomainPlot_multiple(domain_hclust, distribution_distance, k = ncol(domain_hclust
     A list. The output of function 'DomainHclust()'.    
 }
   \item{distribution_distance}{
-    A matrix. The output of function 'DistributionDistance()'.
+    A matrix. The output of function 'DistributionDistance()' or "cell_type_distribution_multiple$cell_type_distribution_combine" from function "SpatialCellTypeDistribution_multiple()".
 }
   \item{k}{
     Numeric. The number of selected domains.
