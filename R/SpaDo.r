@@ -379,6 +379,8 @@ DistributionDistance<-function (cell_type_distribution, distance = c("jensen-sha
 
 DomainHclust<-function (distribution_distance, autoselection = TRUE, auto_resolution = c(0,1,2,3,4), domain_num = 10) 
 {
+    ## fastcluster::hclust has faster speed than stats::hclust. 
+    ## Besides, fastcluster::hclust is without the limitation that size cannot be NA nor exceed 65536
     library(fastcluster)
     result_hc <- fastcluster::hclust(d = as.dist(distribution_distance), method = "ward.D2")
     if (autoselection) {
