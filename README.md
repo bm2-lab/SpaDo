@@ -16,8 +16,8 @@ With the rapid advancements in spatial transcriptome sequencing, multiple tissue
     ```
     
 ## Getting started
-See [Tutorials](https://www.jianguoyun.com/p/DW15NecQnMvoCxji45QFIAA) with different styles and [Demo datasets](https://www.jianguoyun.com/p/DX1ssBYQnMvoCxjZ45QFIAA)
-
+Here are [Tutorials](https://www.jianguoyun.com/p/DW15NecQnMvoCxji45QFIAA) with different styles and [Demo datasets](https://www.jianguoyun.com/p/DX1ssBYQnMvoCxjZ45QFIAA)
+used in our tutorials.
 ## Citation
 Duan, B., Chen, S., Cheng, X. et al. Multi-slice spatial transcriptome domain analysis with SpaDo. Genome Biol 25, 73 (2024). https://doi.org/10.1186/s13059-024-03213-x
 
