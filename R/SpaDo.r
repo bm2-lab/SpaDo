@@ -155,6 +155,8 @@ InitialClustering<-function (expression_profile, user_offered = FALSE, sample_in
     require(Seurat)
     sce_seurat <- CreateSeuratObject(expression_profile)
     sce_seurat <- FindVariableFeatures(sce_seurat, nfeatures = nfeatures)
+    ### To ensure compatibility with Seurat v5, we manually added the data layer.
+    sce_seurat@assays$RNA@data<-sce_seurat@assays$RNA@counts
     sce_seurat <- ScaleData(sce_seurat)
     sce_seurat <- RunPCA(sce_seurat, features = VariableFeatures(object = sce_seurat), 
         ndims.print = 1, nfeatures.print = 1)
