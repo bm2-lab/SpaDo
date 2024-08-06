@@ -8,12 +8,14 @@ With the rapid advancements in spatial transcriptome sequencing, multiple tissue
 
 ## Installation
 * **SpaDo** package can be installed from Github using **devtools** packages with **R>=4.0.5**.
-* **Attention：** SpaDo was originally built on **Seurat 4.0.4** and **SeuratObject 4.0.4**. To avoid problems due to Seurat updates, please make sure you are using the same version of Seurat and SeuratObject packages （**Seurat 4.0.4** and **SeuratObject 4.0.4**）!
+* **Attention：** SpaDo was originally built on **Seurat 4.0.4** and **SeuratObject 4.0.4**. To avoid problems due to Seurat updates, it is better to use the same version of Seurat and SeuratObject packages （**Seurat 4.0.4** and **SeuratObject 4.0.4**）!
 
     ```r
     library(devtools)
     install_github("bm2-lab/SpaDo")
     ```
+## Update
+We recently updated SpaDo with two improvements: (1) Ensuring compatibility with Seurat v5 in the "InitialClustering" function; (2) Enabling parallel execution for the "DistributionDistance" function when using the "JSD" distance metric, significantly reducing runtime. 
     
 ## Getting started
 Here are [Tutorials](https://www.jianguoyun.com/p/DW15NecQnMvoCxji45QFIAA) with different styles and [Demo datasets](https://www.jianguoyun.com/p/DX1ssBYQnMvoCxjZ45QFIAA)
