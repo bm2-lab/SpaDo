@@ -356,26 +356,62 @@ SpatialCellTypeDistribution<-SpatialCellTypeDistribution<-function (sample_infor
     }
 }
 
-DistributionDistance<-function (cell_type_distribution, distance = c("jensen-shannon", 
-    "manhattan")) 
-{
+DistributionDistance <- function(cell_type_distribution,distance = c("JSD", "manhattan"),no_cores=1) {
     method_choose <- distance[1]
-    if (method_choose == "jensen-shannon") {
-        require(philentropy)
-        propor_dis <- philentropy::distance(cell_type_distribution, 
-            method = method_choose)
-        row.names(propor_dis) <- row.names(cell_type_distribution)
-        colnames(propor_dis) <- row.names(cell_type_distribution)
-        return(propor_dis)
-    }
-    else if (method_choose == "manhattan") {
+    if (method_choose == "manhattan") {
         propor_dis <- dist(x = cell_type_distribution, method = "manhattan")
         propor_dis <- as.matrix(propor_dis)
         return(propor_dis)
-    }
-    else {
-        print("method must be jensen-shannon or manhattan")
-        break
+    }else if(method_choose=="JSD"){
+        if(n_cores<1){
+            print("n_core cannot be less than 1!")
+            break
+        }
+        if(n_cores==1){
+            require(philentropy)
+            propor_dis <- philentropy::distance(cell_type_distribution, method = method_choose)
+            row.names(propor_dis) <- row.names(cell_type_distribution)
+            colnames(propor_dis) <- row.names(cell_type_distribution)
+            return(propor_dis)   
+        }else{
+            require(parallel)
+            max_cores <- detectCores()
+            if(no_cores>max_cores){
+                print("no_core cannot bigger than the max cores in your computer!")
+                break
+            }else{
+                require(lsa)
+                kl_divergence <- function(p, q) {
+                    p <- p + .Machine$double.eps
+                    q <- q + .Machine$double.eps
+                    return(sum(p * log(p / q)))
+                }
+                jsd <- function(p, q) {
+                    m <- (p + q) / 2
+                    return((kl_divergence(p, m) + kl_divergence(q, m)) / 2)
+                }
+                calculate_jsd_matrix <- function(data_matrix,no_cores) {
+                    n_samples <- ncol(data_matrix)
+                    jsd_matrix <- matrix(0, n_samples, n_samples)
+                    cl <- makeCluster(no_cores)
+                    clusterExport(cl, list("data_matrix", "jsd", "kl_divergence"))
+                    jsd_matrix <- parLapply(cl, 1:n_samples, function(i) {
+                        sapply(1:n_samples, function(j) {
+                            if (i == j) {
+                                return(0)
+                            } else {
+                                    return(jsd(data_matrix[,i], data_matrix[,j]))
+                            }
+                        })
+                    })  
+                  stopCluster(cl)
+                  jsd_matrix <- do.call(cbind, jsd_matrix)
+                  return(jsd_matrix)
+                }
+                distances <- calculate_jsd_matrix(t(cell_type_distribution), no_cores)
+                return(distances)   
+            }           
+        }
     }
 }
 
