@@ -206,6 +206,8 @@ SpatialCellTypeDistribution<-SpatialCellTypeDistribution<-function (sample_infor
         colnames(test_coordinate_expand) <- paste(colnames(test_coordinate_expand), 
             1:ncol(test_coordinate_expand))
         sce_seurat <- CreateSeuratObject(t(test_coordinate_expand))
+        ### To ensure compatibility with Seurat v5, we manually added the data layer.
+        sce_seurat@assays$RNA@data<-sce_seurat@assays$RNA@counts
         sce_seurat <- ScaleData(sce_seurat)
         sce_seurat <- RunPCA(sce_seurat, features = rownames(sce_seurat), 
             ndims.print = 1, nfeatures.print = 1, npcs = 5)
