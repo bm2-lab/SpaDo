@@ -1,11 +1,11 @@
 Package: SpaDo
 Type: Package
 Title: Cross-slice Spatial Transcriptome Domain analysis with SpaDo
-Version: 1.0
-Date: 2023-07-24
+Version: 1.2.0
+Date: 2024-08-08
 Author: Bin Duan
 Maintainer: BinDuan <bioinfo_db@163.com>
-Description: SpaDo is a tool that facilitates cross-slice spatial domain alignment, detection, annotation, and downstream analysis for spatial transcriptome data at single-cell and spot resolutions.
+Description: SpaDo is a tool that facilitates multi-slice spatial domain detection, annotation, and downstream analysis for spatial transcriptome data at single-cell and spot resolutions.
 License: GPL-2
 Depends: R (>= 4.0.5)
-Keyword: Cross-slice Domain Detection and annotation, Spatial transcriptomics
+Keyword: Multi-slice Domain Detection and annotation, Spatial transcriptomics
