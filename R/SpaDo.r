@@ -211,7 +211,7 @@ SpatialCellTypeDistribution<-SpatialCellTypeDistribution<-function (sample_infor
             ndims.print = 1, nfeatures.print = 1, npcs = 5,verbose=FALSE)
         sce_seurat@reductions$pca@cell.embeddings <- as.matrix(test_coordinate)
         sce_seurat <- FindNeighbors(sce_seurat, reduction = "pca", 
-            dims = 1:2, return.neighbor = T, k.param = 50)
+            dims = 1:2, return.neighbor = T, k.param = 50,verbose=FALSE)
         knn_sample <- sce_seurat@neighbors$RNA.nn@nn.idx
         knn_value <- sce_seurat@neighbors$RNA.nn@nn.dist
         cell_names <- sce_seurat@neighbors$RNA.nn@cell.names
