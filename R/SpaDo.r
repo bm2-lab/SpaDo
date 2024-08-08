@@ -368,28 +368,30 @@ jsd <- function(p, q) {
     return((kl_divergence(p, m) + kl_divergence(q, m)) / 2)
 }
 ### Calculating JSD with parallel
-calculate_jsd_matrix <- function(cell_type_distribution,no_cores=10) {
-    cell_type_distribution<-t(cell_type_distribution)
+calculate_jsd_matrix <- function(cell_type_distribution, no_cores=10) {
+    cell_type_distribution <- t(cell_type_distribution)
     n_samples <- ncol(cell_type_distribution)
     jsd_matrix <- matrix(0, n_samples, n_samples)
     require(parallel)
     cl <- makeCluster(no_cores)
-    clusterExport(cl, list("cell_type_distribution", "jsd", "kl_divergence"))
+    clusterExport(cl, list("cell_type_distribution"))
+    clusterEvalQ(cl, library(SpaDo))
     jsd_matrix <- parLapply(cl, 1:n_samples, function(i) {
         sapply(1:n_samples, function(j) {
-                if (i == j) {
-                        return(0)
-                } else {
-                        return(jsd(cell_type_distribution[,i], cell_type_distribution[,j]))
-                }
+            if (i == j) {
+                return(0)
+            } else {
+                return(SpaDo::jsd(cell_type_distribution[,i], cell_type_distribution[,j]))
+            }
         })
-    })  
+    })
     stopCluster(cl)
     jsd_matrix <- do.call(cbind, jsd_matrix)
-    row.names(jsd_matrix)<-colnames(cell_type_distribution)
-    colnames(jsd_matrix)<-colnames(cell_type_distribution)
+    row.names(jsd_matrix) <- colnames(cell_type_distribution)
+    colnames(jsd_matrix) <- colnames(cell_type_distribution)
     return(jsd_matrix)
 }
+
 DistributionDistance <- function(cell_type_distribution,distance = c("JSD", "manhattan"),no_cores=1) {
     method_choose <- distance[1] 
     if (method_choose == "manhattan") {
