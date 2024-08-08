@@ -154,12 +154,11 @@ InitialClustering<-function (expression_profile, user_offered = FALSE, sample_in
     initial_clustering_result$expression_profile <- expression_profile
     require(Seurat)
     sce_seurat <- CreateSeuratObject(expression_profile)
-    sce_seurat <- FindVariableFeatures(sce_seurat, nfeatures = nfeatures)
-    ### To ensure compatibility with Seurat v5, we manually added the data layer.
-    sce_seurat@assays$RNA@data<-sce_seurat@assays$RNA@counts
-    sce_seurat <- ScaleData(sce_seurat)
+    sce_seurat<-NormalizeData(sce_seurat,normalization.method = NULL,verbose=FALSE)
+    sce_seurat <- FindVariableFeatures(sce_seurat, nfeatures = nfeatures,verbose=FALSE)
+    sce_seurat <- ScaleData(sce_seurat,verbose=FALSE)
     sce_seurat <- RunPCA(sce_seurat, features = VariableFeatures(object = sce_seurat), 
-        ndims.print = 1, nfeatures.print = 1)
+        ndims.print = 1, nfeatures.print = 1,verbose=FALSE)
     if (user_offered) {
         initial_clustering_result$sample_information <- sample_information_user_offered
     }
@@ -206,11 +205,10 @@ SpatialCellTypeDistribution<-SpatialCellTypeDistribution<-function (sample_infor
         colnames(test_coordinate_expand) <- paste(colnames(test_coordinate_expand), 
             1:ncol(test_coordinate_expand))
         sce_seurat <- CreateSeuratObject(t(test_coordinate_expand))
-        ### To ensure compatibility with Seurat v5, we manually added the data layer.
-        sce_seurat@assays$RNA@data<-sce_seurat@assays$RNA@counts
-        sce_seurat <- ScaleData(sce_seurat)
+        sce_seurat<-NormalizeData(sce_seurat,normalization.method = NULL,verbose=FALSE)
+        sce_seurat <- ScaleData(sce_seurat,verbose=FALSE)
         sce_seurat <- RunPCA(sce_seurat, features = rownames(sce_seurat), 
-            ndims.print = 1, nfeatures.print = 1, npcs = 5)
+            ndims.print = 1, nfeatures.print = 1, npcs = 5,verbose=FALSE)
         sce_seurat@reductions$pca@cell.embeddings <- as.matrix(test_coordinate)
         sce_seurat <- FindNeighbors(sce_seurat, reduction = "pca", 
             dims = 1:2, return.neighbor = T, k.param = 50)
