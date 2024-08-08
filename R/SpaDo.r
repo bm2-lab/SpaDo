@@ -405,7 +405,7 @@ DistributionDistance <- function(cell_type_distribution,distance = c("JSD", "man
         }
         if(no_cores==1){
             require(philentropy)
-            propor_dis <- philentropy::distance(cell_type_distribution, method = method_choose)
+            propor_dis <- philentropy::distance(cell_type_distribution, method = "jenshan-shannon")
             row.names(propor_dis) <- row.names(cell_type_distribution)
             colnames(propor_dis) <- row.names(cell_type_distribution)
             return(propor_dis)   
