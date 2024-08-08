@@ -358,6 +358,7 @@ SpatialCellTypeDistribution<-SpatialCellTypeDistribution<-function (sample_infor
 
 DistributionDistance <- function(cell_type_distribution,distance = c("JSD", "manhattan"),no_cores=1) {
     method_choose <- distance[1]
+    data_matrix<-t(cell_type_distribution)
     if (method_choose == "manhattan") {
         propor_dis <- dist(x = cell_type_distribution, method = "manhattan")
         propor_dis <- as.matrix(propor_dis)
@@ -408,7 +409,7 @@ DistributionDistance <- function(cell_type_distribution,distance = c("JSD", "man
                   jsd_matrix <- do.call(cbind, jsd_matrix)
                   return(jsd_matrix)
                 }
-                distances <- calculate_jsd_matrix(t(cell_type_distribution), no_cores)
+                distances <- calculate_jsd_matrix(data_matrix, no_cores)
                 return(distances)   
             }           
         }
