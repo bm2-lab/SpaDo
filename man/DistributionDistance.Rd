@@ -21,6 +21,7 @@ DistributionDistance(cell_type_distribution, distance = c("JSD", "manhattan"),no
   \item{no_cores}{
     Numeric. The cpu number to calculate distance when choosing "JSD". 
 }
+}
 \value{
     A matrix showing distance between every two cells/spots.
 }
