@@ -179,7 +179,7 @@ SpatialPlot<-function (initial_clustering_result, sample_information_coordinate)
     sce_seurat <- initial_clustering_result$sce_seurat
     Idents(sce_seurat) <- initial_clustering_result$sample_information
     require(ggplot2)
-    sce_seurat <- RunUMAP(sce_seurat, dims = 1:15)
+    sce_seurat <- RunUMAP(sce_seurat, dims = 1:15,verbose=FALSE)
     sample_information_coordinate$cluster <- Idents(sce_seurat)
     cluster_plot <- DimPlot(sce_seurat, reduction = "umap")
     coordinate_plot <- ggplot(sample_information_coordinate, 
