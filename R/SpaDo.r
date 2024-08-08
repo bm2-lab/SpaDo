@@ -355,10 +355,43 @@ SpatialCellTypeDistribution<-SpatialCellTypeDistribution<-function (sample_infor
         break
     }
 }
-
+### Calculating KL
+kl_divergence <- function(p, q) {
+    require(lsa)
+    p <- p + .Machine$double.eps
+    q <- q + .Machine$double.eps
+    return(sum(p * log(p / q)))
+}
+### Calculating JSD
+jsd <- function(p, q) {
+    m <- (p + q) / 2
+    return((kl_divergence(p, m) + kl_divergence(q, m)) / 2)
+}
+### Calculating JSD with parallel
+calculate_jsd_matrix <- function(cell_type_distribution,no_cores=10) {
+    cell_type_distribution<-t(cell_type_distribution)
+    n_samples <- ncol(cell_type_distribution)
+    jsd_matrix <- matrix(0, n_samples, n_samples)
+    require(parallel)
+    cl <- makeCluster(no_cores)
+    clusterExport(cl, list("cell_type_distribution", "jsd", "kl_divergence"))
+    jsd_matrix <- parLapply(cl, 1:n_samples, function(i) {
+        sapply(1:n_samples, function(j) {
+                if (i == j) {
+                        return(0)
+                } else {
+                        return(jsd(cell_type_distribution[,i], cell_type_distribution[,j]))
+                }
+        })
+    })  
+    stopCluster(cl)
+    jsd_matrix <- do.call(cbind, jsd_matrix)
+    row.names(jsd_matrix)<-colnames(cell_type_distribution)
+    colnames(jsd_matrix)<-colnames(cell_type_distribution)
+    return(jsd_matrix)
+}
 DistributionDistance <- function(cell_type_distribution,distance = c("JSD", "manhattan"),no_cores=1) {
-    method_choose <- distance[1]
-    data_matrix<-t(cell_type_distribution)
+    method_choose <- distance[1] 
     if (method_choose == "manhattan") {
         propor_dis <- dist(x = cell_type_distribution, method = "manhattan")
         propor_dis <- as.matrix(propor_dis)
@@ -381,43 +414,12 @@ DistributionDistance <- function(cell_type_distribution,distance = c("JSD", "man
                 print("no_core cannot bigger than the max cores in your computer, use max cores instead.")
                 no_cores<-max_cores-1
             }else{
-                require(lsa)
-                kl_divergence <- function(p, q) {
-                    p <- p + .Machine$double.eps
-                    q <- q + .Machine$double.eps
-                    return(sum(p * log(p / q)))
-                }
-                jsd <- function(p, q) {
-                    m <- (p + q) / 2
-                    return((kl_divergence(p, m) + kl_divergence(q, m)) / 2)
-                }
-                calculate_jsd_matrix <- function(data_matrix,no_cores) {
-                    n_samples <- ncol(data_matrix)
-                    jsd_matrix <- matrix(0, n_samples, n_samples)
-                    cl <- makeCluster(no_cores)
-                    clusterExport(cl, list("data_matrix", "jsd", "kl_divergence"))
-                    jsd_matrix <- parLapply(cl, 1:n_samples, function(i) {
-                        sapply(1:n_samples, function(j) {
-                            if (i == j) {
-                                return(0)
-                            } else {
-                                    return(jsd(data_matrix[,i], data_matrix[,j]))
-                            }
-                        })
-                    })  
-                  stopCluster(cl)
-                  jsd_matrix <- do.call(cbind, jsd_matrix)
-                    row.names(jsd_matrix)<-colnames(data_matrix)
-                    colnames(jsd_matrix)<-colnames(data_matrix)
-                  return(jsd_matrix)
-                }
-                distances <- calculate_jsd_matrix(data_matrix, no_cores)
+          distances <- calculate_jsd_matrix(cell_type_distribution, no_cores)
                 return(distances)   
             }           
         }
     }
 }
-
 DomainHclust<-function (distribution_distance, autoselection = TRUE, auto_resolution = c(0,1,2,3,4), domain_num = 10) 
 {
     ## fastcluster::hclust has faster speed than stats::hclust. 
