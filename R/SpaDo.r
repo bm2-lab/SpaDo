@@ -378,8 +378,8 @@ DistributionDistance <- function(cell_type_distribution,distance = c("JSD", "man
             require(parallel)
             max_cores <- detectCores()
             if(no_cores>max_cores){
-                print("no_core cannot bigger than the max cores in your computer!")
-                break
+                print("no_core cannot bigger than the max cores in your computer, use max cores instead.")
+                no_cores<-max_cores-1
             }else{
                 require(lsa)
                 kl_divergence <- function(p, q) {
@@ -407,6 +407,8 @@ DistributionDistance <- function(cell_type_distribution,distance = c("JSD", "man
                     })  
                   stopCluster(cl)
                   jsd_matrix <- do.call(cbind, jsd_matrix)
+                    row.names(jsd_matrix)<-colnames(data_matrix)
+                    colnames(jsd_matrix)<-colnames(data_matrix)
                   return(jsd_matrix)
                 }
                 distances <- calculate_jsd_matrix(data_matrix, no_cores)
