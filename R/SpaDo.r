@@ -369,7 +369,7 @@ calculate_jsd_matrix <- function(cell_type_distribution, no_cores=10) {
             if (i == j) {
                 return(0)
             } else {
-                return(philentropy::jensen_shannon(cell_type_distribution[,i], cell_type_distribution[,j]))
+                return(philentropy::jensen_shannon(cell_type_distribution[,i], cell_type_distribution[,j],testNA=T))
             }
         })
     })
