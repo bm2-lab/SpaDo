@@ -381,7 +381,7 @@ calculate_jsd_matrix <- function(cell_type_distribution, no_cores=10) {
             if (i == j) {
                 return(0)
             } else {
-                return(SpaDo::jsd(cell_type_distribution[,i], cell_type_distribution[,j]))
+                return(jsd(cell_type_distribution[,i], cell_type_distribution[,j]))
             }
         })
     })
