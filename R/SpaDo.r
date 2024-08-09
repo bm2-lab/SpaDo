@@ -355,18 +355,6 @@ SpatialCellTypeDistribution<-SpatialCellTypeDistribution<-function (sample_infor
         break
     }
 }
-### Calculating KL
-kl_divergence <- function(p, q) {
-    require(lsa)
-    p <- p + .Machine$double.eps
-    q <- q + .Machine$double.eps
-    return(sum(p * log(p / q)))
-}
-### Calculating JSD
-jsd <- function(p, q) {
-    m <- (p + q) / 2
-    return((kl_divergence(p, m) + kl_divergence(q, m)) / 2)
-}
 ### Calculating JSD with parallel
 calculate_jsd_matrix <- function(cell_type_distribution, no_cores=10) {
     cell_type_distribution <- t(cell_type_distribution)
@@ -381,7 +369,7 @@ calculate_jsd_matrix <- function(cell_type_distribution, no_cores=10) {
             if (i == j) {
                 return(0)
             } else {
-                return(jsd(cell_type_distribution[,i], cell_type_distribution[,j]))
+                return(jensen_shannon(cell_type_distribution[,i], cell_type_distribution[,j]))
             }
         })
     })
