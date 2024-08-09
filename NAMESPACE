@@ -3,4 +3,4 @@ export("Correlation", "DistributionDistance", "DomainCharacterization",
        "DomainPlot_multiple", "DrawCluster", "InitialClustering",
        "SpatialCellTypeDistribution",
        "SpatialCellTypeDistribution_multiple", "SpatialNormalize",
-       "SpatialPlot", "SpatialQuery", "SpatialReference")
+       "SpatialPlot", "SpatialQuery", "SpatialReference","calculate_jsd_matrix")
