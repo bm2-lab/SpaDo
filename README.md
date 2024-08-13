@@ -7,7 +7,7 @@ Multi-slice **Spa**tial Transcriptome **Do**main Analysis.
 With the rapid advancements in spatial transcriptome sequencing, multiple tissue slices are now available, enabling the integration and interpretation of spatial cellular landscapes. Herein, we introduce SpaDo, a tool for multi-slice spatial domain analysis, including modules for multi-slice spatial domain detection, reference-based annotation, and multiple slice clustering at both single-cell and spot resolutions. We demonstrate SpaDo's effectiveness with over 40 multi-slice spatial transcriptome datasets from 7 sequencing platforms. Our findings highlight SpaDo's potential to reveal novel biological insights in multi-slice spatial transcriptomes.
 
 ## Update (2024.8.9)
-* **(1)** SpaDo was originally built on **Seurat 4.0.4** and **SeuratObject 4.0.4**. To avoid problems due to Seurat updates, We recently (2024.8.9) updated SpaDo to ensure compatibility with Seurat v5;
+* **(1)** SpaDo was originally built on **Seurat 4.0.4** and **SeuratObject 4.0.4**. To avoid problems due to Seurat updates, We recently (2024.8.9) updated SpaDo to ensure compatibility with **Seurat v5**;
 * **(2)** Enabling parallel execution for the "DistributionDistance" function when using the "JSD" distance metric, significantly reducing runtime;
 * **(3)** We updated corresponding [Tutorials](https://www.jianguoyun.com/p/DW15NecQnMvoCxji45QFIAA).
 
