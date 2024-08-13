@@ -8,7 +8,7 @@ With the rapid advancements in spatial transcriptome sequencing, multiple tissue
 
 ## Update (2024.8.9)
 * **(1)** SpaDo was originally built on **Seurat 4.0.4** and **SeuratObject 4.0.4**. To avoid problems due to Seurat updates, We recently (2024.8.9) updated SpaDo to ensure compatibility with **Seurat v5**;
-* **(2)** Enabling parallel execution for the "DistributionDistance" function when using the "JSD" distance metric, significantly reducing runtime;
+* **(2)** Enabling parallel execution for the **"DistributionDistance"** function when using the "JSD" distance metric, significantly reducing runtime;
 * **(3)** We updated corresponding [Tutorials](https://www.jianguoyun.com/p/DW15NecQnMvoCxji45QFIAA).
 
 ## Installation
