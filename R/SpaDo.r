@@ -408,6 +408,8 @@ DistributionDistance <- function(cell_type_distribution,distance = c("JSD", "man
                 return(distances)   
             }           
         }
+    }else{
+        print("distance must be 'JSD' or 'manhattan'")
     }
 }
 DomainHclust<-function (distribution_distance, autoselection = TRUE, auto_resolution = c(0,1,2,3,4), domain_num = 10) 
